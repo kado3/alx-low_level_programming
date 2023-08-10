@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int main() 
 {
     printf("But the outcome is a piece of art,\n");
