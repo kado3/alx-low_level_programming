@@ -18,6 +18,6 @@ printf("%2d", result);
 else
 printf(", %2d", result);
 }
-printf("$\n");
+printf("\n");
 }
 }
