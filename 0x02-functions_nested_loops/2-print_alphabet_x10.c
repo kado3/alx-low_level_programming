@@ -19,4 +19,3 @@ letter++;
 _putchar('\n');
 }
 }
-
