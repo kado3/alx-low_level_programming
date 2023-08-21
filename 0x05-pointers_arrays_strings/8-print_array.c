@@ -7,7 +7,7 @@
  */
 void print_array(int *a, int n)
 {
-int i; // Declare the loop variable outside the loop
+int i;
 for (i = 0; i < n; i++)
 {
 printf("%d", a[i]);
