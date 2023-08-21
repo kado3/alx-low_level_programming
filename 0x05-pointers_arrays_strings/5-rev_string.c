@@ -14,10 +14,6 @@ s++;
 }
 return length;
 }
-/**
- * rev_string - Reverses the characters in a string
- * @s: Pointer to a string
- */
 void rev_string(char *s)
 {
 int length = _strlen(s);
