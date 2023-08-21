@@ -1,13 +1,14 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * print_array - Prints n elements of an array of integers followed by a new line
+ * print_array - Prints n elements of an array of integers
  * @a: Pointer to an array of integers
- * @n: Number of elements to print
+ * @n: Number of elements to be printed
  */
 void print_array(int *a, int n)
 {
-for (int i = 0; i < n; i++)
+int i; // Declare the loop variable outside the loop
+for (i = 0; i < n; i++)
 {
 printf("%d", a[i]);
 if (i != n - 1)
