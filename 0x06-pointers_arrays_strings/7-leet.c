@@ -6,18 +6,19 @@
  */
 char *leet(char *s)
 {
-char leet_replace[] = "aeotlAEOTL";
-char leet_encoded[] = "4307104310";
-for (int i = 0; s[i] != '\0'; i++)
+char leet_chars[] = "aAeEoOtTlL";
+char leet_replacements[] = "4433007711";
+int i, j;
+for (i = 0; s[i] != '\0'; i++)
 {
-for (int j = 0; leet_replace[j] != '\0'; j++)
+for (j = 0; leet_chars[j] != '\0'; j++)
 {
-if (s[i] == leet_replace[j])
+if (s[i] == leet_chars[j])
 {
-s[i] = leet_encoded[j];
+s[i] = leet_replacements[j];
 break;
 }
 }
 }
-return s;
+return (s);
 }
