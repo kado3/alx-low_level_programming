@@ -1,38 +1,33 @@
 #include "main.h"
-#include <stdbool.h
-
 /**
- * is_separator - Checks if a character is a word separator
- * @c: The character to check
- * Return: true if c is a separator, false otherwise
+ * cap_string - Capitalizes all words of a string.
+ * @str: The string to be capitalized.
+ *
+ * Return: A pointer to the changed string.
  */
-bool is_separator(char c)
+char *cap_string(char *str)
 {
-char separators[] = " \t\n,;.!?\"(){}";
-for (int i = 0; separators[i]; i++)
+int index = 0;
+while (str[index])
 {
-if (separators[i] == c)
-return (true);
+while (!(str[index] >= 'a' && str[index] <= 'z'))
+index++;
+if (str[index - 1] == ' ' ||
+		    str[index - 1] == '\t' ||
+		    str[index - 1] == '\n' ||
+		    str[index - 1] == ',' ||
+		    str[index - 1] == ';' ||
+		    str[index - 1] == '.' ||
+		    str[index - 1] == '!' ||
+		    str[index - 1] == '?' ||
+		    str[index - 1] == '"' ||
+		    str[index - 1] == '(' ||
+		    str[index - 1] == ')' ||
+		    str[index - 1] == '{' ||
+		    str[index - 1] == '}' ||
+	             index == 0)
+str[index] -= 32;
+index++;
 }
-return(false);
-}
-/**
- * cap_string - Capitalizes all words of a string
- * @s: Pointer to the input string
- * Return: Pointer to the modified string
- */
-char *cap_string(char *s)
-{
-int i = 0;
-bool new_word = true; // Indicates if the current character is the start of a new word
-while (s[i] != '\0')
-{
-if (new_word && s[i] >= 'a' && s[i] <= 'z')
-{
-s[i] -= -32;
-}
-new_word = is_separator(s[i]); // Check if current character is a separator
-i++;
-}
-return (s);
+return (str);
 }
