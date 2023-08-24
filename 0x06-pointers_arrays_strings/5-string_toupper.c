@@ -11,7 +11,7 @@ while (s[i] != '\0')
 {
 if (s[i] >= 'a' && s[i] <= 'z')
 {
-s[i] = s[i] - 32; // Convert lowercase to uppercase ASCII value
+s[i] = s[i] - 32;
 }
 i++;
 }
