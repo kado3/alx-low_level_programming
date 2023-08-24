@@ -12,9 +12,9 @@ char separators[] = " \t\n,;.!?\"(){}";
 for (int i = 0; separators[i]; i++)
 {
 if (separators[i] == c)
-return true;
+return (true);
 }
-return false;
+return(false);
 }
 /**
  * cap_string - Capitalizes all words of a string
@@ -34,5 +34,5 @@ s[i] -= -32;
 new_word = is_separator(s[i]); // Check if current character is a separator
 i++;
 }
-return s;
+return (s);
 }

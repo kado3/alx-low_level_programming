@@ -15,5 +15,5 @@ s[i] = s[i] - 32; // Convert lowercase to uppercase ASCII value
 }
 i++;
 }
-return s;
+return (s);
 }
