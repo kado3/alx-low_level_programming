@@ -1,17 +1,21 @@
 #include "main.h"
 /**
- * _strspn - Gets the length of a prefix substring
- * @s: Pointer to the string
- * @accept: Pointer to the substring of accepted characters
- * Return: Number of bytes in the initial segment of s consisting only of bytes from accept
+ * _strpbrk - Entry point
+ * @s: input
+ * @accept: input
+ * Return: Always 0 (Success)
  */
-unsigned int _strspn(char *s, char *accept)
+char *_strpbrk(char *s, char *accept)
 {
-unsigned int count = 0;
-while (*s != '\0' && _strchr(accept, *s) != NULL)
+int k;
+while (*s)
 {
-count++;
+for (k = 0; accept[k]; k++)
+{
+if (*s == accept[k])
+return (s);
+}
 s++;
 }
-return (count);
+return ('\0');
 }
