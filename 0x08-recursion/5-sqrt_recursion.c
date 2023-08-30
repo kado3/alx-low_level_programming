@@ -6,7 +6,7 @@
  */
 int _sqrt_recursion(int n)
 {
-return sqrt_helper(n, 1);
+return (sqrt_helper(n, 1));
 }
 /**
  * sqrt_helper - Helper function to calculate the natural square root
@@ -18,15 +18,15 @@ int sqrt_helper(int n, int guess)
 {
 if (n < 0)
 {
-return -1;
+return (-1);
 }
 if (guess * guess > n)
 {
-return -1;
+return (-1);
 }
 if (guess * guess == n)
 {
-return guess;
+return (guess);
 }
-return sqrt_helper(n, guess + 1);
+return (sqrt_helper(n, guess + 1));
 }
