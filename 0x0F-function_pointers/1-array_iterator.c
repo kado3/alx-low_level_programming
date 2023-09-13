@@ -1,22 +1,19 @@
-#include <stdio.h>
 #include "function_pointers.h"
-void print_element(int num)
+#include <stddef.h> // for size_t
+/**
+ * array_iterator - Execute a function on each element of an array.
+ * @array: Pointer to the array.
+ * @size: Size of the array.
+ * @action: A function pointer to the function to be executed.
+ */
+void array_iterator(int *array, size_t size, void (*action)(int))
 {
-printf("%d ", num);
+size_t i;
+if (array != NULL && action != NULL)
+{
+for (i = 0; i < size; i++)
+{
+action(array[i]);
 }
-void square_element(int num)
-{
-printf("%d ", num * num);
 }
-int main(void)
-{
-int my_array[] = {1, 2, 3, 4, 5};
-size_t array_size = sizeof(my_array) / sizeof(my_array[0]);
-printf("Printing elements of the array:\n");
-array_iterator(my_array, array_size, print_element);
-printf("\n");
-printf("Squaring elements of the array:\n");
-array_iterator(my_array, array_size, square_element);
-printf("\n");
-return (0);
 }
