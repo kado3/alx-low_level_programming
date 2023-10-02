@@ -35,7 +35,6 @@ dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
 close(fd_from);
 exit(99);
 }
-
 while ((read_bytes = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 {
 write_bytes = write(fd_to, buffer, read_bytes);
