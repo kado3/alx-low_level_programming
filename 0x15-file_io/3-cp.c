@@ -1,62 +1,61 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#define BUFFER_SIZE 1024
+#include "main.h"
 /**
-* main - Copy content from one file to another
-* @argc: The number of command line arguments
-* @argv: An array of command line argument strings
-* Return: 0 on success, or an error code on failure
+* main - Entry point
+* @argc: The argument count
+* @argv: The argument vector
+*
+* Return: ...
 */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-int fd_from, fd_to, read_bytes, write_bytes;
-char buffer[BUFFER_SIZE];
-char *file_from, *file_to;
 if (argc != 3)
 {
-dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 exit(97);
 }
-file_from = argv[1];
-file_to = argv[2];
-fd_from = open(file_from, O_RDONLY);
-if (fd_from == -1)
+copy_file(argv[1], argv[2]);
+exit(0);
+}
+/**
+* copy_file - ...
+* @src: ...
+* @dest: ...
+*
+* Return: ...
+*/
+void copy_file(const char *src, const char *dest)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+int ofd, tfd, readed;
+char buff[1024];
+ofd = open(src, O_RDONLY);
+if (!src || ofd == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
 exit(98);
 }
-fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-if (fd_to == -1)
+tfd = open(dest, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+while ((readed = read(ofd, buff, 1024)) > 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-close(fd_from);
-exit(99);
-}
-while ((read_bytes = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+if (write(tfd, buff, readed) != readed || tfd == -1)
 {
-write_bytes = write(fd_to, buffer, read_bytes);
-if (write_bytes != read_bytes)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", file_to);
-close(fd_from);
-close(fd_to);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest);
 exit(99);
 }
 }
-if (read_bytes == -1)
+if (readed == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-close(fd_from);
-close(fd_to);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
 exit(98);
 }
-if (close(fd_from) == -1 || close(fd_to) == -1)
+if (close(ofd) == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", errno);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ofd);
 exit(100);
 }
-return (0);
+if (close(tfd) == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", tfd);
+exit(100);
+}
 }
